@@ -6,36 +6,18 @@ const invoiceSchema = new mongoose.Schema({
     ref: "User",
     required: true
   },
-  clientName: {
+  productName:{
     type: String,
     required: true
   },
-  clientEmail: {
-    type: String
-  },
-  items: [
-    {
-      description: String,
-      quantity: Number,
-      price: Number
-    }
-  ],
-  totalAmount: {
+  productPrice: {
     type: Number,
     required: true
   },
-  issueDate: {
-    type: Date,
-    default: Date.now
+  quantity: {
+    type: Number,
+    required: true
   },
-  dueDate: {
-    type: Date
-  },
-  status: {
-    type: String,
-    enum: ["paid", "unpaid", "overdue"],
-    default: "unpaid"
-  }
 }, {
   timestamps: true
 });
