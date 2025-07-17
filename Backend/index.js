@@ -4,6 +4,8 @@ import cors from "cors";
 import connectDB from "./database/db.js";
 import cookieParser from "cookie-parser";
 import path from "path";
+import authRoutes from "./routes/authRoutes.js";
+import invoiceRoutes from "./routes/invoiceRoutes.js";
 
 dotenv.config();
 
@@ -12,7 +14,6 @@ connectDB();
 const app = express();
 const _dirname = path.resolve();
 const PORT = process.env.PORT || 3000;
-
 
 app.use(
   cors({
@@ -23,6 +24,10 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/invoice", invoiceRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running ✅");
